@@ -1,0 +1,23 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"description": "Presets that harden security for shared GitHub Action Workflows",
+	"packageRules": [
+		{
+			"dependencyDashboardApproval": true,
+			"description": "Pin `github-action` digests. As per GitHubs [security best practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions).",
+			"groupName": null,
+			"matchDepTypes": ["action"],
+			"matchPackageNames": [
+				"!actions/{/,}**",
+				"!github/{/,}**",
+				"!google-github-actions/{/,}**",
+				"!googleapis/{/,}**",
+				"!pnpm/{/,}**",
+				"!sanity-io/{/,}**",
+				"!useblacksmith/{/,}**"
+			],
+			"pinDigests": true,
+			"schedule": []
+		}
+	]
+}

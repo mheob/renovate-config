@@ -1,0 +1,22 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"description": "Use presets maintained by [mheob](https://github.com/mheob). See [docs](https://github.com/mheob/renovate-config#readme) for advanced usage.",
+	"extends": [
+		"github>mheob/renovate-config:base",
+		"github>mheob/renovate-config:semantic-commit-type",
+		"github>mheob/renovate-config:security",
+		"github>mheob/renovate-config:strategy",
+		"github>mheob/renovate-config:labels",
+		"github>mheob/renovate-config:lock-file-maintenance",
+		"github>mheob/renovate-config:node-lts",
+		"github>mheob/renovate-config:schedule",
+		"github>mheob/renovate-config:group-non-major",
+		"github>mheob/renovate-config:ignore-recommended",
+		"github>mheob/renovate-config:dedupe"
+	],
+	"onboardingConfig": {
+		"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+		"extends": ["github>mheob/renovate-config"]
+	},
+	"onboardingConfigFileName": ".github/renovate.json"
+}
