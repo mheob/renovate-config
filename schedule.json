@@ -1,0 +1,22 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"description": "Schedule updates for dependencies",
+	"lockFileMaintenance": {
+		"schedule": ["before 3am on the first day of the month"]
+	},
+	"packageRules": [
+		{
+			"matchDepTypes": ["devDependencies"],
+			"schedule": ["before 3am on the first day of the month"]
+		},
+		{
+			"matchDepTypes": ["dependencies", "peerDependencies", "resolutions"],
+			"schedule": ["before 3am on Monday"]
+		},
+		{
+			"extends": ["schedule:monthly"],
+			"matchDepTypes": ["engines", "packageManager"]
+		}
+	],
+	"timezone": "Europe/Berlin"
+}
