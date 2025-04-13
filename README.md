@@ -1,7 +1,5 @@
 # [Sharable Config Presets](https://docs.renovatebot.com/config-presets/) for [Renovate](https://www.mend.io/renovate/) curated by [mheob](https://github.com/mheob)
 
-[![Test](https://github.com/mheob/renovate-config/actions/workflows/check.yml/badge.svg)](https://github.com/mheob/renovate-config/actions/workflows/check.yml)
-
 ## First thoughts on keeping dependencies up to date
 
 If keeping dependencies up to date is part of your job, then you have two options:

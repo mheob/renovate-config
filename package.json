@@ -11,11 +11,11 @@
 	"author": "Alexander Böhm <tools@boehm.work>",
 	"type": "module",
 	"devDependencies": {
-		"@mheob/eslint-config": "^8.4.1",
+		"@mheob/eslint-config": "^8.7.0",
 		"@mheob/prettier-config": "^3.3.3",
 		"@types/bun": "latest",
-		"eslint": "^9.23.0",
+		"eslint": "^9.24.0",
 		"prettier": "^3.5.3",
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.3"
 	}
 }
