@@ -4,12 +4,8 @@
 	"packageRules": [
 		{
 			"allowedVersions": "<=22",
-			"matchPackageNames": [
-				"node"
-			],
-			"schedule": [
-				"at any time"
-			]
+			"matchPackageNames": ["node"],
+			"schedule": ["at any time"]
 		}
 	]
 }
