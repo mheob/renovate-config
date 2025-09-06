@@ -1,0 +1,10 @@
+{
+	"packageRules": [
+		{
+			"extractVersion": "^(?<version>v?\\d+\\.\\d+\\.\\d+)$",
+			"matchDepTypes": ["action"],
+			"pinDigests": true,
+			"versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
+		}
+	]
+}
