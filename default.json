@@ -11,6 +11,7 @@
 		"github>mheob/renovate-config:node-lts",
 		"github>mheob/renovate-config:schedule",
 		"github>mheob/renovate-config:group-non-major",
+		"github>mheob/renovate-config:pin-github-actions",
 		"github>mheob/renovate-config:ignore-recommended",
 		"github>mheob/renovate-config:dedupe"
 	],
