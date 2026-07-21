@@ -14,7 +14,7 @@
 		"lint": "eslint . --fix"
 	},
 	"devDependencies": {
-		"@mheob/eslint-config": "^8.13.0",
+		"@mheob/eslint-config": "^9.0.0",
 		"@mheob/prettier-config": "^3.3.4",
 		"@types/bun": "latest",
 		"eslint": "^9.35.0",
