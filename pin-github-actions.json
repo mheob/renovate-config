@@ -1,4 +1,6 @@
 {
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"description": "Pin `github-action` digests while keeping the readable SemVer tag",
 	"packageRules": [
 		{
 			"matchDepTypes": ["action"],
