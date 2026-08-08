@@ -1,0 +1,12 @@
+{
+	"name": "renovate-config",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Use presets maintained by mheob",
+	"keywords": [
+		"renovate",
+		"renovate-config"
+	],
+	"license": "MIT",
+	"author": "Alexander Böhm <tools@boehm.work>"
+}
