@@ -1,10 +1,13 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Assign `deps 📦` and `bot 🤖` labels, and for major updates `major :warning:`",
+	"description": "Assign `deps 📦` and `bot 🤖` labels, and for major updates also `major ⚠️`. That last label is load-bearing: the shared Kodiak config in mheob/.github blocks merging on this exact string, U+FE0F included, so renaming it lets majors merge unreviewed. It is added with `addLabels` so a repository that sets its own `labels` keeps it.",
 	"packageRules": [
-		{ "labels": ["deps 📦", "bot 🤖"], "matchPackageNames": ["*"] },
 		{
-			"labels": ["major ⚠️", "deps 📦", "bot 🤖"],
+			"labels": ["deps 📦", "bot 🤖"],
+			"matchPackageNames": ["*"]
+		},
+		{
+			"addLabels": ["major ⚠️"],
 			"matchUpdateTypes": ["major"]
 		}
 	],
