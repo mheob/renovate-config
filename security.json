@@ -1,7 +1,7 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Presets that harden security for shared GitHub Action Workflows",
-	"minimumReleaseAge": "3 days",
+	"description": "Hold npm releases for three days, and pin third-party GitHub Actions behind dashboard approval. The release age comes from Renovate's `security:minimumReleaseAgeNpm`, which leaves out the update types that carry no release timestamp; a global `minimumReleaseAge` would hold those back forever.",
+	"extends": ["security:minimumReleaseAgeNpm"],
 	"packageRules": [
 		{
 			"dependencyDashboardApproval": true,
