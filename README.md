@@ -74,7 +74,6 @@ repository:
 		"github>mheob/renovate-config:strategy",
 		"github>mheob/renovate-config:labels",
 		"github>mheob/renovate-config:lock-file-maintenance",
-		"github>mheob/renovate-config:node-lts",
 		"github>mheob/renovate-config:schedule",
 		"github>mheob/renovate-config:group-non-major",
 		"github>mheob/renovate-config:pin-github-actions",
@@ -115,7 +114,7 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`ignore-recommended`](ignore-recommended.json)               | Placeholder list of dependencies that are too noisy to maintain automatically. Empty by default.                                           |
 | [`labels`](labels.json)                                       | Labels PRs `deps 📦` and `bot 🤖`, major updates additionally `major ⚠️`, and the dashboard issue `bot 🤖`.                                 |
 | [`lock-file-maintenance`](lock-file-maintenance.json)         | Refreshes lock files on the first day of the month, behind dashboard approval.                                                             |
-| [`node-lts`](node-lts.json)                                   | Keeps CI images on the latest Node.js LTS by capping updates at `<=24`, unscheduled.                                                       |
+| [`node-lts`](node-lts.json)                                   | Deprecated, does nothing. Renovate's `node` versioning already proposes only LTS releases.                                                |
 | [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action digests while keeping the human-readable SemVer tag visible.                                                            |
 | [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday), lock file maintenance on the first day of the month. Timezone `Europe/Berlin`. |
 | [`security`](security.json)                                   | Holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |

@@ -7,7 +7,6 @@
 		"github>mheob/renovate-config:strategy",
 		"github>mheob/renovate-config:labels",
 		"github>mheob/renovate-config:lock-file-maintenance",
-		"github>mheob/renovate-config:node-lts",
 		"github>mheob/renovate-config:schedule",
 		"github>mheob/renovate-config:group-non-major",
 		"github>mheob/renovate-config:pin-github-actions",
