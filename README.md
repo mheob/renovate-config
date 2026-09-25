@@ -209,6 +209,7 @@ npx --yes --package renovate -- renovate-config-validator --strict $(find . -max
 
 Explicitly passed files are checked as global config, so repository-only options are not flagged, but schema errors and
 invalid schedules are.
+The [`Validate presets`](.github/workflows/validate.yml) workflow runs the same command on every pull request.
 
 ## License
 
