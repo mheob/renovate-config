@@ -76,7 +76,6 @@ repository:
 		"github>mheob/renovate-config:lock-file-maintenance",
 		"github>mheob/renovate-config:schedule",
 		"github>mheob/renovate-config:group-non-major",
-		"github>mheob/renovate-config:pin-github-actions",
 		"github>mheob/renovate-config:ignore-recommended",
 		"github>mheob/renovate-config:dedupe",
 		"github>mheob/renovate-config:security"
@@ -89,7 +88,7 @@ repository:
 }
 ```
 
-`branding` is not listed there because [`base`](base.json) already extends it.
+`branding` is not listed there because [`base`](base.json) already extends it, and neither is `pin-github-actions`, which `config:best-practices` in `base` already covers.
 
 In practice this means:
 
@@ -100,6 +99,7 @@ In practice this means:
 - Third-party GitHub Actions are pinned to a commit digest, get a PR of their own and require dashboard approval. The rest of the non-major group does not wait for that approval.
 - Every update runs weekly, before 4am on Monday, and lock file maintenance monthly, all in `Europe/Berlin`. A repository's own `schedule` replaces the weekly window.
 - Lock files are deduped after every update.
+- Docker image and GitHub Action digests are pinned, and packages without a release for a year are flagged as abandoned (`config:best-practices`).
 
 ## Preset reference
 
@@ -107,7 +107,7 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 
 | Preset                                                       | What it does                                                                                                                              |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [`base`](base.json)                                           | `config:recommended` plus semantic commits, config migration PRs, separate PRs per major version, and internal monorepo dependency updates. |
+| [`base`](base.json)                                           | `config:best-practices` plus semantic commits, separate PRs per major version, and internal monorepo dependency updates.                  |
 | [`branding`](branding.json)                                   | Adds a footer to PRs and a header to the Dependency Dashboard pointing back at this preset. Pulled in by `base`.                            |
 | [`dedupe`](dedupe.json)                                       | Dedupes lock files after updates for npm, pnpm and Yarn.                                                                                   |
 | [`group-non-major`](group-non-major.json)                     | Groups every update type except major into one PR. Package managers (`npm`, `pnpm`, `yarn`) stay separate.                                 |
@@ -115,11 +115,11 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`labels`](labels.json)                                       | Labels PRs `deps 📦` and `bot 🤖`, major updates additionally `major ⚠️`, and the dashboard issue `bot 🤖`.                                 |
 | [`lock-file-maintenance`](lock-file-maintenance.json)         | Refreshes lock files on the first day of the month, behind dashboard approval.                                                             |
 | [`node-lts`](node-lts.json)                                   | Deprecated, does nothing. Renovate's `node` versioning already proposes only LTS releases.                                                |
-| [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action digests while keeping the human-readable SemVer tag visible.                                                            |
+| [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action and reusable workflow digests. Already part of `base`, via `config:best-practices`.                                    |
 | [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday), lock file maintenance on the first day of the month. Timezone `Europe/Berlin`. |
 | [`security`](security.json)                                   | Holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |
 | [`semantic-commit-type`](semantic-commit-type.json)           | Runtime dependencies commit as `fix(deps)`, everything else as `chore(deps)`, lock file only updates as `chore(lockfile)`.                  |
-| [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides.                       |
+| [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides. Overrides the pinning of devDependencies that `config:best-practices` would do. |
 
 The `security` preset trusts a small allow list of Action publishers (`actions`, `github`, `google-github-actions`,
 `googleapis`, `pnpm`, `sanity-io`, `useblacksmith`): their updates need no dashboard approval and stay in the

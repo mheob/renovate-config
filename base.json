@@ -1,8 +1,7 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [":semanticCommits", "config:recommended", "github>mheob/renovate-config:branding"],
-	"configMigration": true,
-	"dependencyDashboardApproval": false,
+	"description": "`config:best-practices` plus semantic commits, separate PRs per major version and internal monorepo dependency updates.",
+	"extends": [":semanticCommits", "config:best-practices", "github>mheob/renovate-config:branding"],
 	"separateMultipleMajor": true,
 	"updateInternalDeps": true
 }

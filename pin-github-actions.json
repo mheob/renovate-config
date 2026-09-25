@@ -1,10 +1,5 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Pin `github-action` digests while keeping the readable SemVer tag",
-	"packageRules": [
-		{
-			"matchDepTypes": ["action"],
-			"pinDigests": true
-		}
-	]
+	"description": "Pin GitHub Action and reusable workflow digests, keeping the version as a comment. Part of `config:best-practices`, and so of `base`; kept for configurations that extend it on its own.",
+	"extends": ["helpers:pinGitHubActionDigests"]
 }
