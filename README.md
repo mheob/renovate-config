@@ -99,7 +99,7 @@ In practice this means:
 - Every PR is labelled `deps 📦` and `bot 🤖`, and uses conventional commit messages (`fix(deps):`, `chore(deps):`).
 - Releases must be at least three days old before an update is proposed.
 - Third-party GitHub Actions are pinned to a commit digest, get a PR of their own and require dashboard approval. The rest of the non-major group does not wait for that approval.
-- Production dependencies run weekly, dev dependencies and lock file maintenance monthly, all in `Europe/Berlin`.
+- Every update runs weekly, before 4am on Monday, and lock file maintenance monthly, all in `Europe/Berlin`. A repository's own `schedule` replaces the weekly window.
 - Lock files are deduped after every update.
 
 ## Preset reference
@@ -117,7 +117,7 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`lock-file-maintenance`](lock-file-maintenance.json)         | Refreshes lock files on the first day of the month, behind dashboard approval.                                                             |
 | [`node-lts`](node-lts.json)                                   | Keeps CI images on the latest Node.js LTS by capping updates at `<=24`, unscheduled.                                                       |
 | [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action digests while keeping the human-readable SemVer tag visible.                                                            |
-| [`schedule`](schedule.json)                                   | Dependencies weekly before 3am Monday, dev dependencies and lock file maintenance monthly, engines monthly. Timezone `Europe/Berlin`.       |
+| [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday), lock file maintenance on the first day of the month. Timezone `Europe/Berlin`. |
 | [`security`](security.json)                                   | Requires a `minimumReleaseAge` of three days and pins digests of third-party Actions behind dashboard approval.                            |
 | [`semantic-commit-type`](semantic-commit-type.json)           | Runtime dependencies commit as `fix(deps)`, everything else as `chore(deps)`, lock file only updates as `chore(lockfile)`.                  |
 | [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides.                       |
