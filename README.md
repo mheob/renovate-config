@@ -95,7 +95,7 @@ In practice this means:
 - Non-major updates are grouped into a single **all non-major dependencies** PR, package managers excluded.
 - Major updates get their own PR, one per major version, labelled `major ⚠️`.
 - Every PR is labelled `deps 📦` and `bot 🤖`, and uses conventional commit messages (`fix(deps):`, `chore(deps):`).
-- npm releases must be at least three days old before an update is proposed.
+- npm releases must be at least three days old before an update is proposed. Vulnerability fixes, from GitHub's alerts and from OSV, skip that wait and the schedule.
 - Third-party GitHub Actions are pinned to a commit digest, get a PR of their own and require dashboard approval. The rest of the non-major group does not wait for that approval.
 - Every update runs weekly, before 4am on Monday, and lock file maintenance monthly, all in `Europe/Berlin`. A repository's own `schedule` replaces the weekly window.
 - Lock files are deduped after every update.
@@ -117,7 +117,7 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`node-lts`](node-lts.json)                                   | Deprecated, does nothing. Renovate's `node` versioning already proposes only LTS releases.                                                |
 | [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action and reusable workflow digests. Already part of `base`, via `config:best-practices`.                                    |
 | [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday). Timezone `Europe/Berlin`.                                   |
-| [`security`](security.json)                                   | Holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |
+| [`security`](security.json)                                   | Raises OSV vulnerability fixes, holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |
 | [`semantic-commit-type`](semantic-commit-type.json)           | Runtime dependencies commit as `fix(deps)`, everything else as `chore(deps)`, lock file only updates as `chore(lockfile)`.                  |
 | [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides. Overrides the pinning of devDependencies that `config:best-practices` would do. |
 
