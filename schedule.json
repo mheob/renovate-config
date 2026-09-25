@@ -1,9 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "One weekly window for every update, early on Monday morning, and lock file maintenance on the first day of the month, in `Europe/Berlin`. A repository's own top-level `schedule` replaces the weekly window. Schedules are deliberately not set per dependency type: `group-non-major` puts every type into one branch, and a group whose members carry different schedules waits on \"Awaiting Schedule\" instead of opening.",
+	"description": "One weekly window for every update, early on Monday morning, in `Europe/Berlin`. A repository's own top-level `schedule` replaces the weekly window. Schedules are deliberately not set per dependency type: `group-non-major` puts every type into one branch, and a group whose members carry different schedules waits on \"Awaiting Schedule\" instead of opening.",
 	"extends": ["schedule:weekly"],
-	"lockFileMaintenance": {
-		"schedule": ["before 3am on the first day of the month"]
-	},
 	"timezone": "Europe/Berlin"
 }

@@ -1,23 +1,13 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Groups every update type except major",
+	"description": "Groups every update type except major. Lock file maintenance and replacements are left out because Renovate never groups them with other updates.",
 	"packageRules": [
 		{
 			"groupName": "all non-major dependencies",
 			"groupSlug": "non-major",
 			"matchDepNames": ["!npm", "!pnpm", "!yarn"],
 			"matchPackageNames": ["*"],
-			"matchUpdateTypes": [
-				"bump",
-				"digest",
-				"lockFileMaintenance",
-				"minor",
-				"patch",
-				"pin",
-				"pinDigest",
-				"replacement",
-				"rollback"
-			]
+			"matchUpdateTypes": ["bump", "digest", "minor", "patch", "pin", "pinDigest", "rollback"]
 		}
 	]
 }

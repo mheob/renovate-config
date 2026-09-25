@@ -1,9 +1,8 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Opt-in to refresh lock files on the first day of the month",
+	"description": "Refresh lock files on the first day of the month, once approved on the Dependency Dashboard.",
+	"extends": [":maintainLockFilesMonthly"],
 	"lockFileMaintenance": {
-		"dependencyDashboardApproval": true,
-		"enabled": true,
-		"schedule": ["* 0 1 * *"]
+		"dependencyDashboardApproval": true
 	}
 }

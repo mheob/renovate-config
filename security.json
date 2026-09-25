@@ -1,7 +1,8 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Hold npm releases for three days, and pin third-party GitHub Actions behind dashboard approval. The release age comes from Renovate's `security:minimumReleaseAgeNpm`, which leaves out the update types that carry no release timestamp; a global `minimumReleaseAge` would hold those back forever.",
+	"description": "Raise fixes for OSV vulnerabilities, hold npm releases for three days, and pin third-party GitHub Actions behind dashboard approval. The release age comes from Renovate's `security:minimumReleaseAgeNpm`, which leaves out the update types that carry no release timestamp; a global `minimumReleaseAge` would hold those back forever.",
 	"extends": ["security:minimumReleaseAgeNpm"],
+	"osvVulnerabilityAlerts": true,
 	"packageRules": [
 		{
 			"dependencyDashboardApproval": true,

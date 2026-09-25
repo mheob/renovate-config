@@ -1,6 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Always widen `peerDependencies` and `engines`, while other types like `dependencies`, `devDependencies` are `update-lockfile`.",
+	"description": "`bump` for dependencies, devDependencies, optionalDependencies and resolutions, `widen` for engines and peerDependencies, `in-range-only` for overrides. In `default.json` this comes after `base`, so it overrides the `:pinDevDependencies` that `config:best-practices` brings: devDependencies are bumped, not pinned.",
 	"packageRules": [
 		{
 			"matchDepTypes": ["devDependencies", "dependencies", "optionalDependencies", "resolutions"],

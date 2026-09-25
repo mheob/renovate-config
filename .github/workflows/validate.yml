@@ -1,0 +1,38 @@
+name: Validate presets
+
+# Every repository that extends github>mheob/renovate-config reads main
+# directly, with no release in between, so a broken preset reaches all of them
+# on the next Renovate run. This is the same check README.md's "Contributing"
+# section asks for, run on every pull request instead of relying on memory.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: renovate-config-validator
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      # The validator only auto-discovers Renovate's own config file names, so
+      # the presets are passed explicitly. Install scripts stay on: without
+      # re2's, Renovate falls back to RegExp and warns that regex validation
+      # may be inaccurate.
+      - name: Validate every preset file
+        run: npx --yes --package renovate -- renovate-config-validator --strict $(find . -maxdepth 1 -name '*.json' ! -name 'package.json')
