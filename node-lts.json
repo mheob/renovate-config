@@ -1,11 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Update CI images to use the latest LTS of Node.js",
-	"packageRules": [
-		{
-			"allowedVersions": "<=24",
-			"matchPackageNames": ["node"],
-			"schedule": ["at any time"]
-		}
-	]
+	"description": "No longer does anything, and is no longer part of `default.json`. It used to cap Node.js at `<=24`, which would have blocked Node.js 26 once it reached LTS; Renovate's `node` versioning already proposes only releases that have reached LTS. Kept so configurations that extend it still resolve."
 }

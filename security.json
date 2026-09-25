@@ -1,11 +1,11 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Presets that harden security for shared GitHub Action Workflows",
-	"minimumReleaseAge": "3 days",
+	"description": "Hold npm releases for three days, and pin third-party GitHub Actions behind dashboard approval. The release age comes from Renovate's `security:minimumReleaseAgeNpm`, which leaves out the update types that carry no release timestamp; a global `minimumReleaseAge` would hold those back forever.",
+	"extends": ["security:minimumReleaseAgeNpm"],
 	"packageRules": [
 		{
 			"dependencyDashboardApproval": true,
-			"description": "Pin `github-action` digests. As per GitHubs [security best practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions).",
+			"description": "Pin `github-action` digests. As per GitHubs [security best practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions). This preset has to come after `group-non-major` in `default.json`: packageRules apply in order, so a later rule's `groupName` would pull these Actions back into the non-major group, and the whole group would then inherit `dependencyDashboardApproval` and wait for an approval nobody gives.",
 			"groupName": null,
 			"matchDepTypes": ["action"],
 			"matchPackageNames": [

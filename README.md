@@ -71,16 +71,15 @@ repository:
 	"extends": [
 		"github>mheob/renovate-config:base",
 		"github>mheob/renovate-config:semantic-commit-type",
-		"github>mheob/renovate-config:security",
 		"github>mheob/renovate-config:strategy",
 		"github>mheob/renovate-config:labels",
 		"github>mheob/renovate-config:lock-file-maintenance",
-		"github>mheob/renovate-config:node-lts",
 		"github>mheob/renovate-config:schedule",
 		"github>mheob/renovate-config:group-non-major",
 		"github>mheob/renovate-config:pin-github-actions",
 		"github>mheob/renovate-config:ignore-recommended",
-		"github>mheob/renovate-config:dedupe"
+		"github>mheob/renovate-config:dedupe",
+		"github>mheob/renovate-config:security"
 	],
 	"onboardingConfig": {
 		"$schema": "https://docs.renovatebot.com/renovate-schema.json",
@@ -97,9 +96,9 @@ In practice this means:
 - Non-major updates are grouped into a single **all non-major dependencies** PR, package managers excluded.
 - Major updates get their own PR, one per major version, labelled `major ⚠️`.
 - Every PR is labelled `deps 📦` and `bot 🤖`, and uses conventional commit messages (`fix(deps):`, `chore(deps):`).
-- Releases must be at least three days old before an update is proposed.
-- Third-party GitHub Actions are pinned to a commit digest and require dashboard approval.
-- Production dependencies run weekly, dev dependencies and lock file maintenance monthly, all in `Europe/Berlin`.
+- npm releases must be at least three days old before an update is proposed.
+- Third-party GitHub Actions are pinned to a commit digest, get a PR of their own and require dashboard approval. The rest of the non-major group does not wait for that approval.
+- Every update runs weekly, before 4am on Monday, and lock file maintenance monthly, all in `Europe/Berlin`. A repository's own `schedule` replaces the weekly window.
 - Lock files are deduped after every update.
 
 ## Preset reference
@@ -115,15 +114,16 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`ignore-recommended`](ignore-recommended.json)               | Placeholder list of dependencies that are too noisy to maintain automatically. Empty by default.                                           |
 | [`labels`](labels.json)                                       | Labels PRs `deps 📦` and `bot 🤖`, major updates additionally `major ⚠️`, and the dashboard issue `bot 🤖`.                                 |
 | [`lock-file-maintenance`](lock-file-maintenance.json)         | Refreshes lock files on the first day of the month, behind dashboard approval.                                                             |
-| [`node-lts`](node-lts.json)                                   | Keeps CI images on the latest Node.js LTS by capping updates at `<=24`, unscheduled.                                                       |
+| [`node-lts`](node-lts.json)                                   | Deprecated, does nothing. Renovate's `node` versioning already proposes only LTS releases.                                                |
 | [`pin-github-actions`](pin-github-actions.json)               | Pins GitHub Action digests while keeping the human-readable SemVer tag visible.                                                            |
-| [`schedule`](schedule.json)                                   | Dependencies weekly before 3am Monday, dev dependencies and lock file maintenance monthly, engines monthly. Timezone `Europe/Berlin`.       |
-| [`security`](security.json)                                   | Requires a `minimumReleaseAge` of three days and pins digests of third-party Actions behind dashboard approval.                            |
+| [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday), lock file maintenance on the first day of the month. Timezone `Europe/Berlin`. |
+| [`security`](security.json)                                   | Holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |
 | [`semantic-commit-type`](semantic-commit-type.json)           | Runtime dependencies commit as `fix(deps)`, everything else as `chore(deps)`, lock file only updates as `chore(lockfile)`.                  |
 | [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides.                       |
 
 The `security` preset trusts a small allow list of Action publishers (`actions`, `github`, `google-github-actions`,
-`googleapis`, `pnpm`, `sanity-io`, `useblacksmith`) and does not force digest pinning on them.
+`googleapis`, `pnpm`, `sanity-io`, `useblacksmith`): their updates need no dashboard approval and stay in the
+non-major group. Their digests are pinned all the same, by `pin-github-actions`.
 
 ## Customizing
 
