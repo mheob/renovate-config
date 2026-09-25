@@ -71,7 +71,6 @@ repository:
 	"extends": [
 		"github>mheob/renovate-config:base",
 		"github>mheob/renovate-config:semantic-commit-type",
-		"github>mheob/renovate-config:security",
 		"github>mheob/renovate-config:strategy",
 		"github>mheob/renovate-config:labels",
 		"github>mheob/renovate-config:lock-file-maintenance",
@@ -80,7 +79,8 @@ repository:
 		"github>mheob/renovate-config:group-non-major",
 		"github>mheob/renovate-config:pin-github-actions",
 		"github>mheob/renovate-config:ignore-recommended",
-		"github>mheob/renovate-config:dedupe"
+		"github>mheob/renovate-config:dedupe",
+		"github>mheob/renovate-config:security"
 	],
 	"onboardingConfig": {
 		"$schema": "https://docs.renovatebot.com/renovate-schema.json",
@@ -98,7 +98,7 @@ In practice this means:
 - Major updates get their own PR, one per major version, labelled `major ⚠️`.
 - Every PR is labelled `deps 📦` and `bot 🤖`, and uses conventional commit messages (`fix(deps):`, `chore(deps):`).
 - Releases must be at least three days old before an update is proposed.
-- Third-party GitHub Actions are pinned to a commit digest and require dashboard approval.
+- Third-party GitHub Actions are pinned to a commit digest, get a PR of their own and require dashboard approval. The rest of the non-major group does not wait for that approval.
 - Production dependencies run weekly, dev dependencies and lock file maintenance monthly, all in `Europe/Berlin`.
 - Lock files are deduped after every update.
 
@@ -123,7 +123,8 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides.                       |
 
 The `security` preset trusts a small allow list of Action publishers (`actions`, `github`, `google-github-actions`,
-`googleapis`, `pnpm`, `sanity-io`, `useblacksmith`) and does not force digest pinning on them.
+`googleapis`, `pnpm`, `sanity-io`, `useblacksmith`): their updates need no dashboard approval and stay in the
+non-major group. Their digests are pinned all the same, by `pin-github-actions`.
 
 ## Customizing
 

@@ -5,7 +5,7 @@
 	"packageRules": [
 		{
 			"dependencyDashboardApproval": true,
-			"description": "Pin `github-action` digests. As per GitHubs [security best practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions).",
+			"description": "Pin `github-action` digests. As per GitHubs [security best practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions). This preset has to come after `group-non-major` in `default.json`: packageRules apply in order, so a later rule's `groupName` would pull these Actions back into the non-major group, and the whole group would then inherit `dependencyDashboardApproval` and wait for an approval nobody gives.",
 			"groupName": null,
 			"matchDepTypes": ["action"],
 			"matchPackageNames": [
