@@ -119,7 +119,7 @@ Each preset can be extended on its own via `github>mheob/renovate-config:<name>`
 | [`schedule`](schedule.json)                                   | One weekly window for every update (`schedule:weekly`, before 4am on Monday). Timezone `Europe/Berlin`.                                   |
 | [`security`](security.json)                                   | Raises OSV vulnerability fixes, holds npm releases for three days (`security:minimumReleaseAgeNpm`) and pins digests of third-party Actions behind dashboard approval, in PRs of their own. |
 | [`semantic-commit-type`](semantic-commit-type.json)           | Runtime dependencies commit as `fix(deps)`, everything else as `chore(deps)`, lock file only updates as `chore(lockfile)`.                  |
-| [`strategy`](strategy.json)                                   | `bump` for dependencies and devDependencies, `widen` for engines and peerDependencies, `in-range-only` for overrides. Overrides the pinning of devDependencies that `config:best-practices` would do. |
+| [`strategy`](strategy.json)                                   | `bump` for dependencies, devDependencies and pnpm catalog entries, `widen` for engines and peerDependencies, `in-range-only` for overrides. Overrides the pinning of devDependencies that `config:best-practices` would do. |
 
 The `security` preset trusts a small allow list of Action publishers (`actions`, `github`, `google-github-actions`,
 `googleapis`, `pnpm`, `sanity-io`, `useblacksmith`): their updates need no dashboard approval and stay in the

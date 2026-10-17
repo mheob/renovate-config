@@ -1,6 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "Set semantic commit type based on advanced rules",
+	"description": "Set semantic commit type based on advanced rules. pnpm catalog entries (`pnpm.catalog.<name>`) stay `chore(deps)` like every other npm update, because a catalog cannot tell runtime from dev dependencies.",
 	"packageRules": [
 		{ "matchManagers": ["npm"], "semanticCommitType": "chore" },
 		{
