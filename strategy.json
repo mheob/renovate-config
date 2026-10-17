@@ -1,9 +1,9 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "`bump` for dependencies, devDependencies, optionalDependencies and resolutions, `widen` for engines and peerDependencies, `in-range-only` for overrides. In `default.json` this comes after `base`, so it overrides the `:pinDevDependencies` that `config:best-practices` brings: devDependencies are bumped, not pinned.",
+	"description": "`bump` for dependencies, devDependencies, optionalDependencies, resolutions and pnpm catalog entries (`pnpm.catalog.<name>`, any catalog name), `widen` for engines and peerDependencies, `in-range-only` for overrides. In `default.json` this comes after `base`, so it overrides the `:pinDevDependencies` that `config:best-practices` brings: devDependencies are bumped, not pinned.",
 	"packageRules": [
 		{
-			"matchDepTypes": ["devDependencies", "dependencies", "optionalDependencies", "resolutions"],
+			"matchDepTypes": ["devDependencies", "dependencies", "optionalDependencies", "resolutions", "/^pnpm\\.catalog\\./"],
 			"matchManagers": ["npm"],
 			"rangeStrategy": "bump"
 		},
