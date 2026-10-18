@@ -1,6 +1,6 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"description": "`bump` for dependencies, devDependencies, optionalDependencies, resolutions and pnpm catalog entries (`pnpm.catalog.<name>`, any catalog name), `widen` for engines and peerDependencies, `in-range-only` for overrides, in package.json and in pnpm-workspace.yaml (`pnpm-workspace.overrides`). In `default.json` this comes after `base`, so it overrides the `:pinDevDependencies` that `config:best-practices` brings: devDependencies are bumped, not pinned.",
+	"description": "`bump` for dependencies, devDependencies, optionalDependencies, resolutions and pnpm catalog entries (`pnpm.catalog.<name>`, any catalog name), `widen` for engines and peerDependencies, `in-range-only` for overrides, in package.json (`overrides`, `pnpm.overrides`) and in pnpm-workspace.yaml (`pnpm-workspace.overrides`). In `default.json` this comes after `base`, so it overrides the `:pinDevDependencies` that `config:best-practices` brings: devDependencies are bumped, not pinned.",
 	"packageRules": [
 		{
 			"matchDepTypes": ["devDependencies", "dependencies", "optionalDependencies", "resolutions", "/^pnpm\\.catalog\\./"],
@@ -13,7 +13,7 @@
 			"rangeStrategy": "widen"
 		},
 		{
-			"matchDepTypes": ["overrides", "pnpm-workspace.overrides"],
+			"matchDepTypes": ["overrides", "pnpm.overrides", "pnpm-workspace.overrides"],
 			"matchManagers": ["npm"],
 			"rangeStrategy": "in-range-only"
 		}
